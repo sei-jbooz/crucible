@@ -23,51 +23,25 @@ jobs:
       - name: Determine labels
         id: determine_labels
         run: |
-          echo "${{ steps.extract_body.outputs.result }}"
           LABELS=""
-
-          if echo "${{ steps.extract_body.outputs.result }}" | grep -F "- \[x\] Alloy"; then
-            LABELS="$LABELS Alloy"
-          fi
-          if echo "${{ steps.extract_body.outputs.result }}" | grep -F "- \[x\] Blueprint"; then
-            LABELS="$LABELS Blueprint"
-          fi
-          if echo "${{ steps.extract_body.outputs.result }}" | grep -F "- \[x\] Caster"; then
-            LABELS="$LABELS Caster"
-          fi
-          if echo "${{ steps.extract_body.outputs.result }}" | grep -F "- \[x\] CITE"; then
-            LABELS="$LABELS CITE"
-          fi
-          if echo "${{ steps.extract_body.outputs.result }}" | grep -F "- \[x\] Gallery"; then
-            LABELS="$LABELS Gallery"
-          fi
-          if echo "${{ steps.extract_body.outputs.result }}" | grep -F "- \[x\] Gameboard"; then
-            LABELS="$LABELS Gameboard"
-          fi
-          if echo "${{ steps.extract_body.outputs.result }}" | grep -F "- \[x\] Player"; then
-            LABELS="$LABELS Player"
-          fi
-          if echo "${{ steps.extract_body.outputs.result }}" | grep -F "- \[x\] Steamfitter"; then
-            LABELS="$LABELS Steamfitter"
-          fi
-          if echo "${{ steps.extract_body.outputs.result }}" | grep -F "- \[x\] TopoMojo"; then
-            LABELS="$LABELS TopoMojo"
-          fi
-          if echo "${{ steps.extract_body.outputs.result }}" | grep -F "- \[x\] General"; then
-            LABELS="$LABELS documentation"
-          fi
-
-
-
-          if echo "${{ steps.extract_body.outputs.result }}" | grep -F "- \[x\] New feature"; then
-            LABELS="$LABELS New feature"
-          fi
-          if echo "${{ steps.extract_body.outputs.result }}" | grep -F "- \[x\] Correction"; then
-            LABELS="$LABELS Correction"
-          fi
-          if echo "${{ steps.extract_body.outputs.result }}" | grep -F "- \[x\] Enhancement"; then
-            LABELS="$LABELS enhancement"
-          fi
+          while IFS= read -r line; do
+            case "$line" in
+              *"- [x] Alloy"*) LABELS="$LABELS Alloy" ;;
+              *"- [x] Blueprint"*) LABELS="$LABELS Blueprint" ;;
+              *"- [x] Caster"*) LABELS="$LABELS Caster" ;;
+              *"- [x] CITE"*) LABELS="$LABELS CITE" ;;
+              *"- [x] Gallery"*) LABELS="$LABELS Gallery" ;;
+              *"- [x] Gameboard"*) LABELS="$LABELS Gameboard" ;;
+              *"- [x] Player"*) LABELS="$LABELS Player" ;;
+              *"- [x] Steamfitter"*) LABELS="$LABELS Steamfitter" ;;
+              *"- [x] TopoMojo"*) LABELS="$LABELS TopoMojo" ;;
+              *"- [x] General Docs Update"*) LABELS="$LABELS General Docs Update" ;;
+              *"- [x] New feature"*) LABELS="$LABELS New feature" ;;
+              *"- [x] Correction"*) LABELS="$LABELS Correction" ;;
+              *"- [x] Enhancement"*) LABELS="$LABELS Enhancement" ;;
+              *"- [x] Other"*) LABELS="$LABELS Other" ;;
+            esac
+          done <<< "${{ steps.extract_body.outputs.result }}"
 
           echo "LABELS=$(echo $LABELS | xargs)" >> $GITHUB_ENV
 
