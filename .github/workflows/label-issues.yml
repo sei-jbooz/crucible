@@ -54,7 +54,7 @@ jobs:
             LABELS="$LABELS TopoMojo"
           fi
           if echo "${{ steps.extract_body.outputs.result }}" | grep -F "- \[x\] General"; then
-            LABELS="$LABELS General"
+            LABELS="$LABELS documentation"
           fi
 
 
@@ -66,10 +66,7 @@ jobs:
             LABELS="$LABELS Correction"
           fi
           if echo "${{ steps.extract_body.outputs.result }}" | grep -F "- \[x\] Enhancement"; then
-            LABELS="$LABELS Enhancement"
-          fi
-          if echo "${{ steps.extract_body.outputs.result }}" | grep -F "- \[x\] Other"; then
-            LABELS="$LABELS Other"
+            LABELS="$LABELS enhancement"
           fi
 
           echo "LABELS=$(echo $LABELS | xargs)" >> $GITHUB_ENV
