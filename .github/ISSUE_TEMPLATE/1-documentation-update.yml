@@ -24,7 +24,7 @@ body:
       label: "Type of Update"
       description: "Select the type of documentation update."
       options:
-        - label: "New feature"
+        - label: "New Feature"
         - label: "Correction"
         - label: "Enhancement"
         - label: "Other"
