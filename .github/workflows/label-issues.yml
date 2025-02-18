@@ -38,7 +38,7 @@ jobs:
             *"- [x] General Docs Update"*) LABELS="$LABELS General Docs Update" ;;
             *"- [x] New feature"*) LABELS="$LABELS New feature" ;;
             *"- [x] Correction"*) LABELS="$LABELS Correction" ;;
-            *"- [x] Enhancement"*) LABELS="$LABELS Enhancement" ;;
+            *"- [x] Enhancement"*) LABELS="$LABELS enhancement" ;;
             *"- [x] Other"*) LABELS="$LABELS Other" ;;
           esac
           echo "LABELS=$(echo $LABELS | xargs)" >> $GITHUB_ENV
