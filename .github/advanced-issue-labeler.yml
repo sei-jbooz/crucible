@@ -1,7 +1,6 @@
 policy:
-  - template: ["1-documentation-update.yml"]
-    section:
-      - id: ["application"]
+  - section:
+      - id: [application]
         label:
           - name: "Alloy"
             keys: ["Alloy"]
@@ -21,7 +20,7 @@ policy:
             keys: ["Steamfitter"]
           - name: "TopoMojo"
             keys: ["TopoMojo"]
-      - id: ["type"]
+      - id: [type]
         label:
           - name: "New Feature"
             keys: ["New Feature"]
