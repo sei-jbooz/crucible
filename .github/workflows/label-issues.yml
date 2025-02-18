@@ -20,6 +20,9 @@ jobs:
         with:
           template-path: .github/ISSUE_TEMPLATE/1-documentation-update.yml
 
+      - run: echo '${{ steps.issue-parser.outputs.jsonString }}' > issue.json
+      - run: cat issue.json
+
       - name: Set labels based on application field
         uses: redhat-plumbers-in-action/advanced-issue-labeler@v3
         with:
