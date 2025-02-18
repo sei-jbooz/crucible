@@ -4,6 +4,9 @@ on:
   issues:
     types: [ opened ]
 
+permissions:
+  contents: read
+
 jobs:
   label-issue:
     runs-on: ubuntu-latest
@@ -18,7 +21,7 @@ jobs:
           template-path: .github/ISSUE_TEMPLATE/1-documentation-update.yml
 
       - name: Set labels based on application field
-        uses: redhat-plumbers-in-action/advanced-issue-labeler@v2
+        uses: redhat-plumbers-in-action/advanced-issue-labeler@v3
         with:
           issue-form: ${{ steps.issue-parser.outputs.jsonString }}
           section: application
@@ -28,7 +31,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Set labels based on update_type field
-        uses: redhat-plumbers-in-action/advanced-issue-labeler@v2
+        uses: redhat-plumbers-in-action/advanced-issue-labeler@v3
         with:
           issue-form: ${{ steps.issue-parser.outputs.jsonString }}
           section: update_type
