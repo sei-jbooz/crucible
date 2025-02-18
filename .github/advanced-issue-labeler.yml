@@ -2,7 +2,6 @@ policy:
   - template: ["1-documentation-update.yml"]
     section:
       - id: ["application"]
-        block-list: ["General Docs Update - Not Application Specific"]
         label:
           - name: "Alloy"
             keys: ["Alloy"]
@@ -23,7 +22,6 @@ policy:
           - name: "TopoMojo"
             keys: ["TopoMojo"]
       - id: ["type"]
-        block-list: ["Other"]
         label:
           - name: "New Feature"
             keys: ["New Feature"]
