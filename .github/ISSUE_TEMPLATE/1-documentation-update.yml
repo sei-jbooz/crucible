@@ -19,7 +19,7 @@ body:
         - label: "General Docs Update - Not Application Specific"
 
   - type: checkboxes
-    id: update_type
+    id: type
     attributes:
       label: "Type of Update"
       description: "Select the type of documentation update."
