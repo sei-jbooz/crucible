@@ -24,25 +24,23 @@ jobs:
         id: determine_labels
         run: |
           LABELS=""
-          while IFS= read -r line; do
-            case "$line" in
-              *"- [x] Alloy"*) LABELS="$LABELS Alloy" ;;
-              *"- [x] Blueprint"*) LABELS="$LABELS Blueprint" ;;
-              *"- [x] Caster"*) LABELS="$LABELS Caster" ;;
-              *"- [x] CITE"*) LABELS="$LABELS CITE" ;;
-              *"- [x] Gallery"*) LABELS="$LABELS Gallery" ;;
-              *"- [x] Gameboard"*) LABELS="$LABELS Gameboard" ;;
-              *"- [x] Player"*) LABELS="$LABELS Player" ;;
-              *"- [x] Steamfitter"*) LABELS="$LABELS Steamfitter" ;;
-              *"- [x] TopoMojo"*) LABELS="$LABELS TopoMojo" ;;
-              *"- [x] General Docs Update"*) LABELS="$LABELS General Docs Update" ;;
-              *"- [x] New feature"*) LABELS="$LABELS New feature" ;;
-              *"- [x] Correction"*) LABELS="$LABELS Correction" ;;
-              *"- [x] Enhancement"*) LABELS="$LABELS Enhancement" ;;
-              *"- [x] Other"*) LABELS="$LABELS Other" ;;
-            esac
-          done <<< "${{ steps.extract_body.outputs.result }}"
-
+          FLAT_ISSUE_BODY=$(echo "${{ steps.extract_body.outputs.result }}" | tr '\n' ' ')
+          case "$FLAT_ISSUE_BODY" in
+            *"- [x] Alloy"*) LABELS="$LABELS Alloy" ;;
+            *"- [x] Blueprint"*) LABELS="$LABELS Blueprint" ;;
+            *"- [x] Caster"*) LABELS="$LABELS Caster" ;;
+            *"- [x] CITE"*) LABELS="$LABELS CITE" ;;
+            *"- [x] Gallery"*) LABELS="$LABELS Gallery" ;;
+            *"- [x] Gameboard"*) LABELS="$LABELS Gameboard" ;;
+            *"- [x] Player"*) LABELS="$LABELS Player" ;;
+            *"- [x] Steamfitter"*) LABELS="$LABELS Steamfitter" ;;
+            *"- [x] TopoMojo"*) LABELS="$LABELS TopoMojo" ;;
+            *"- [x] General Docs Update"*) LABELS="$LABELS General Docs Update" ;;
+            *"- [x] New feature"*) LABELS="$LABELS New feature" ;;
+            *"- [x] Correction"*) LABELS="$LABELS Correction" ;;
+            *"- [x] Enhancement"*) LABELS="$LABELS Enhancement" ;;
+            *"- [x] Other"*) LABELS="$LABELS Other" ;;
+          esac
           echo "LABELS=$(echo $LABELS | xargs)" >> $GITHUB_ENV
 
       - name: Add labels to issue
